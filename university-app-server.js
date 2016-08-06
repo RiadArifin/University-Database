@@ -37,7 +37,6 @@ const NAME_OF_COLLECTION = 'universities';
 
 
 //CORS Middleware, causes Express to allow Cross-Origin Requests
-// Do NOT change anythinghere
         var allowCrossDomain = function (req, res, next) {
             res.header('Access-Control-Allow-Origin', '*');
             res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
@@ -60,8 +59,6 @@ app.use(express.static(__dirname));
 mongodb.connect(connectionString, function (error, db) {
 
     //if something is wrong, it'll crash
-    //you could add a try-catch block to handle it, 
-    //but not needed for the assignment
     if (error) {
         throw error;
     }//end if
@@ -73,7 +70,7 @@ mongodb.connect(connectionString, function (error, db) {
 
 
 
-    // Close the database connection and server when the application ends
+    //the database connection and server will close when the application ends
     process.on('SIGTERM', function () {
         console.log("Shutting server down.");
         db.close();
@@ -127,7 +124,7 @@ app.post('/getUniversity', function (request, response) {
 
 
     /**
-     * code to search the record with the key in the mongoDB
+     * Code to search the record with the key in the mongoDB
      * 
      * It should return the found object (this will be an array even if
      * there's only one record, or zero record (i.e. empty record)
