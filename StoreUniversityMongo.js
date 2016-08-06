@@ -9,12 +9,12 @@ var SERVER_URL = 'http://dev.cs.smu.ca:8207';//add the url with your own port nu
 
 
 function validateData() {
-    //first get the values from the fields
+    //to get the values from the fields
     var name = $("#name").val();
     var address = $("#address").val();
     var phone = $("#phone").val();
 
-    //check empty fields
+    //checks empty fields
     if (name == '') {
         alert("Please enter the name of the university!");
         $("#name").focus();
@@ -31,8 +31,8 @@ function validateData() {
         return false;
     }
 
-    //check address
-    //check 1st char if it's a number
+    //checks address
+    //checks 1st char if it's a number
     var firstChar = address.trim().substr(0, 1);
     if (isNaN(firstChar)) {
         alert("Address should start with a number!");
@@ -49,7 +49,7 @@ function validateData() {
     }
 
 
-    //check phone
+    //checks phone
     var tokens = phone.split('-');
     for (var i = 0; i < tokens.length; i++) {
         if (isNaN(tokens[i])) {
@@ -83,6 +83,15 @@ $('#saveButton').click(
                     "Address": $("#address").val(),
                     "PhoneNumber": $("#phone").val()
                 };
+                
+                /*
+                 * 
+                 * to posts the data (newObj) to the server
+                 *      (the data should be saved by server-side script
+                 * if error, it will alert the user
+                 * 
+                 */
+                 
                 $.post(SERVER_URL + "/saveUniversity",
                         newObj,
                         function (data) {
@@ -92,14 +101,7 @@ $('#saveButton').click(
                 });
 
 
-                /**
-                 * Implement the rest
-                 * 
-                 * 1) "post" the data (newObj) to the server
-                 *      (the data should be saved by your server-side script
-                 * 2) If error, alert the user
-                 * 
-                 */
+                
 
             }//end if validateData()
             emptyFields();
@@ -111,25 +113,21 @@ $('#saveButton').click(
 $('#searchButton').click(
         function () {
 
-            //empty the fields if something in
+            //to empty the fields if something in
             emptyFields();
 
-            //first grab the name of the university
+            //to grab the name of the university
             var key = $('#searchKey').val();
 
             var universities = [];//place holder
             var i;
             /**
-             * Implement the rest
-             * 
-             * 1) "post" the key to the server
-             * 2) Obtain the returned universities array (even it there's only
-             *    1 or zero (empty) object, it'll still be an array!
-             * 3) If the array is null (error) or empty (length==0), then alert
-             *    the user
-             * 4) If there's at least on erecord, extract the attribute values
-             * 5) Fill the corrresponding input fields
-             * 6) Alert any errors to the user.
+             * to post the key to the server
+             * to obtain the returned universities array (even it there's only 1 or zero (empty) object, it will still be an array!
+             * if the array is null (error) or empty (length==0), then it will alert the user
+             * to extract the attribute values if there's at least one record 
+             * to fill the corrresponding input fields
+             * to alert any errors to the user.
              */
 
             $.post(SERVER_URL + "/getUniversity", key,
@@ -161,19 +159,17 @@ $('#deleteButton').click(
         function () {
 
 
-            //first grab the name of the university
+            //to grab the name of the university
             var key = $('#searchKey').val();
             var universities = [];//place holder
             var i;
-            /**
-             * Implement the rest
-             * 
-             * 1) "post" the key to the server
-             * 2) Get the returned object (deletion results, "data")
-             * 3) data.n contains the number of records deleted
-             * 4) If data.n is larger than zero, tell the user if the deletion succeeded
-             * 5) If zero, tell that record wasn't found
-             * 6) Alert any errors to the user.
+            /*
+             * to post the key to the server
+             * to get the returned object (deletion results, "data")
+             * data.n contains the number of records deleted
+             * if data.n is larger than zero then it will tell the user if the deletion succeeded
+             * if zero then tells that record wasn't found
+             * to alert any errors to the user.
              */
 
             $.post(SERVER_URL + "/deleteUniversity", key,
@@ -208,13 +204,10 @@ $('#displayButton').click(
             var universities = [];//place holder
             var i;
             /**
-             * Implement the rest
-             * 
-             * 1) request the server to return the university object "array"
-             * 2) If the array is empty, tell the user that no record found
-             *    and empty the table
-             * 3) If record(s) found, fill the table
-             * 4) Alert any errors to the user.
+             * to request the server to return the university object "array"
+             * to tell the user that no record is found and empty the table if the array is empty 
+             * to fill the table if record(s) found 
+             * to lert any errors to the user.
              */
             $.post(SERVER_URL + "/getAllUniversities",
                     function (data) {
