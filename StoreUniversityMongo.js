@@ -207,7 +207,7 @@ $('#displayButton').click(
              * to request the server to return the university object "array"
              * to tell the user that no record is found and empty the table if the array is empty 
              * to fill the table if record(s) found 
-             * to lert any errors to the user.
+             * to alert any errors to the user.
              */
             $.post(SERVER_URL + "/getAllUniversities",
                     function (data) {
