@@ -7,7 +7,6 @@ var mongodb = require('mongodb');
 
 
 //#############################################
-// These const/vars should be changed to use your own 
 // ID, password, databse, and ports
 const SERVER_PORT = 8207;
         var user = "m_arifin";
