@@ -98,11 +98,11 @@ app.post('/saveUniversity', function (request, response) {
     console.log(request.body);
 
     /**
-     * Add code to insert the record to the mongoDB
+     * Code to insert the record to the mongoDB
      * 
      */
     universitiesCollection.insert(request.body,
-//    rectanglesCollection.insert(rect, 
+
             function (err, result) {//use empty to get all records
                 if (err) {
                     return response.send(400, 'An error occurred saving a record.');
@@ -127,7 +127,7 @@ app.post('/getUniversity', function (request, response) {
 
 
     /**
-     * Add code to search the record with the key in the mongoDB
+     * code to search the record with the key in the mongoDB
      * 
      * It should return the found object (this will be an array even if
      * there's only one record, or zero record (i.e. empty record)
@@ -137,14 +137,13 @@ app.post('/getUniversity', function (request, response) {
     universitiesCollection.find(
             {"Name": searchKey},
     function (err, result) {
-        // {"Name":request.body.Name},
         if (err) {
             return response.send(400, 'An error occurred retrieving records.');
         }//end if
 
         console.log(result);
 
-        //now result is expected to be an array of rectangles
+        
         result.toArray(
                 function (err, resultArray) {
                     if (err) {
@@ -168,9 +167,7 @@ app.post('/getAllUniversities', function (request, response) {
     console.log('Retrieving all the records.');
 
     /**
-     * Add code to get ALL the records on the mongoDB
-     * 
-     * Use empty key to find all the records.
+     * Code to get ALL the records on the mongoDB
      * 
      * Again, the result will be in an array even if 0 (empty array) or 1 record.
      * 
@@ -208,14 +205,11 @@ app.post('/deleteUniversity', function (request, response) {
     console.log('Retrieving records: ' + searchKey.toString());
 
     /**
-     * Add code to "remove" the record with the key in the mongoDB
+     * Code to "remove" the record with the key in the mongoDB
      * 
      * It will return a JSON object representing the deletion result.
      * 
      * The attribute "n" contains the number of records deleted.
-     * 
-     * You can return the object "as is" to the client script.
-     * 
      */
     universitiesCollection.remove(
             {"Name": searchKey},
@@ -224,7 +218,7 @@ app.post('/deleteUniversity', function (request, response) {
             return response.send(
                     400, 'An error occurred retrieving records.');
         }//end if
-        // console.log(returnedStr);
+
         var obj = JSON.parse(returnedStr);//convert it to an obj
         console.log(obj.n + " records"); //contain # of remvoved docs
 
