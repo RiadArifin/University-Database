@@ -24,13 +24,13 @@ var port = '27017'; // Default MongoDB port
 
 
 
-// Now create a connection String to be used for the mongo access
+//to create a connection String to be used for the mongo access
 var connectionString = 'mongodb://' + user + ':' + password + '@' +
         host + ':' + port + '/' + database;
 
 
 //#############################################
-//the var for the university collections, no need to change
+//the var for the university collections, 
 var universitiesCollection;
 const NAME_OF_COLLECTION = 'universities';
 //#############################################
@@ -45,7 +45,7 @@ const NAME_OF_COLLECTION = 'universities';
         };
 
 
-//set up the server variables
+//to set up the server variables
 var app = express();
 app.use(express.bodyParser());
 app.use(allowCrossDomain);
@@ -55,7 +55,7 @@ app.use(express.static(__dirname));
 
 
 
-//now connect to the db
+//to connect to the db
 mongodb.connect(connectionString, function (error, db) {
 
     //if something is wrong, it'll crash
@@ -78,7 +78,7 @@ mongodb.connect(connectionString, function (error, db) {
     });
 
 
-    //now start the application server
+    //to start the application server
     var server = app.listen(SERVER_PORT, function () {
         console.log('Listening on port %d',
                 server.address().port);
@@ -127,7 +127,7 @@ app.post('/getUniversity', function (request, response) {
      * Code to search the record with the key in the mongoDB
      * 
      * It should return the found object (this will be an array even if
-     * there's only one record, or zero record (i.e. empty record)
+     * there's only one record, or zero record (i.e. empty record))
      * 
      */
 
